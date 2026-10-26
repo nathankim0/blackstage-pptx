@@ -1,44 +1,44 @@
 ---
 name: blackstage-pptx
-description: 검은 배경·큰 굵은 글씨·간결한 상단 목차의 발표용 PPTX를 만들거나 같은 스타일을 수정할 때 사용한다. 로드맵의 기존 글씨를 같은 화면에서 목차로 이동시키는 효과와 정적 PDF를 지원한다.
+description: Create or revise black-background PPTX decks with large bold text and concise top navigation. Includes same-slide roadmap-to-navigation text motion and static PDF handouts. Use for this presentation style, not arbitrary PPTX conversion.
 ---
 
 # Blackstage PPTX
 
-이 디렉터리의 스크립트로 범용 발표 자료를 만든다. 기존 디자인을 유지하는 요청에 임의의 카드 UI·장식·작은 글씨를 추가하지 않는다. JSON 기반 생성기이며 임의의 기존 PPTX를 가져와 완전 보존하는 편집기는 아니다.
+Use the scripts in this directory to create generic presentations. When preserving this style, do not introduce decorative cards, extra ornaments, or small text. This is a JSON-based generator, not a lossless importer or editor for arbitrary existing PPTX files.
 
-## 구성과 실행
+## Setup and execution
 
-이 디렉터리를 저장소 루트로 삼는다. `README.md`의 실행법과 입력 형식을 사용하고 `examples/demo.json`을 출발점으로 삼는다. 런타임은 Node.js 20+, Python 3.10+, `npm ci`이며 PDF 변환에만 LibreOffice가 필요하다. 생성기는 입력 JSON 기준 상대 경로로 이미지를 읽는다.
+Treat this directory as the repository root. Follow `README.md` for commands and input fields, starting from `examples/demo.json`. Requires Node.js 20+, Python 3.10+, and `npm ci`; LibreOffice is needed only for PDF conversion. Image paths are relative to the input JSON file.
 
 ```bash
 node scripts/build.mjs spec.json output/deck-v1.pptx --pdf
 npm test
 ```
 
-스크립트를 실행하기 전 입력·출력 경로와 지원하는 슬라이드 종류를 확인한다. 현재 버전은 16:9, 상단 목차 최대 4개, 목록 목차 최대 6개, 세 단계 로드맵, 2×2 사진 묶음에 맞춰져 있다. 더 복잡한 배치가 필요하면 먼저 이 한계를 명시하고 적합한 방식으로 구현한다.
+Check input paths, output paths, and supported slide types before running the scripts. The built-in layout supports 16:9 slides, up to four navigation sections, up to six agenda entries, three-step roadmaps, and 2x2 photo grids. If a request exceeds those limits, explain the constraint and use an appropriate implementation.
 
-## 스타일
+## Style
 
-- 검은 배경, 흰 본문, 밝은 회색 비활성 목차, 날짜만 `#FFD54A`. 기본 글꼴은 NanumGothic Bold다. 발표 PC의 실제 설치 여부를 확인하며 다른 글꼴을 쓸 때는 명시한다.
-- 제목은 약 65~74pt, 본문 39pt, 상단 목차 27pt. 문구가 길면 내용을 나누고, 원치 않은 자동 축소·줄바꿈으로 숨기지 않는다. 크기를 지키는 것과 내용이 맞는 것은 별도로 확인한다.
-- 표지·목차·필요한 단독 제목은 상단 목차를 숨긴다. 상단 목차와 2장 목록은 별개이며, 특정 항목의 목차 제거를 슬라이드 삭제로 확대하지 않는다.
-- 반복 안내는 같은 위치·같은 크기를 사용한다. 본문은 제목과 최대 두 줄로 제한한다. 추가 설명은 `notes`에 쓴다.
-- 사진·포스터는 원본 비율을 유지하고 자르지 않는다. 여러 사진은 큰 라벨·테두리가 있는 2×2 묶음을 사용한다. 제공하지 않은 사진·링크·QR·내용을 만들어 넣지 않는다.
-- 날짜는 ISO 원본에서 실제 요일을 계산한다. 본문의 라벨·시간까지 노랗게 만들지 않는다. 표기 변경은 관련 슬라이드와 이동 목적지에도 일관되게 반영한다.
+- Use a black background, white body text, light-gray inactive navigation, and `#FFD54A` for dates only. The default font is NanumGothic Bold. Check its availability on the presentation computer and disclose any substitution.
+- Use approximately 65-74 pt titles, 39 pt body text, and 27 pt navigation labels. Split long copy rather than hiding overflow with shrinking or unwanted wrapping. Check content accuracy separately from geometry.
+- Hide navigation on covers, agenda slides, and standalone titles when appropriate. The agenda and top navigation are independent; removing a navigation entry does not imply deleting its slide.
+- Keep repeated information at consistent positions and sizes. Use a title and at most two body lines; put supporting explanations in `notes`.
+- Contain photos and posters without cropping. Group multiple photos in 2x2 layouts with large labels and borders. Do not invent missing photos, links, QR codes, or content.
+- Calculate weekdays from ISO dates. Keep labels and times white. Apply spelling changes consistently to related slides and motion destinations.
 
-## 이동 효과와 수정
+## Motion and revisions
 
-움직이는 글씨를 요구하면 [references/continuous-motion.md](references/continuous-motion.md)를 읽는다. 로드맵에 원래 보이던 같은 개체가 첫 클릭에 작아지며 목차로 이동하고, 같은 화면에서 본문·사진이 공개되어야 한다. 다음 슬라이드에서 새 글씨가 등장하는 효과로 대체하지 않는다.
+For moving text, read [references/continuous-motion.md](references/continuous-motion.md). On the first click, the original visible roadmap object must shrink and move into the navigation, followed by a content or photo reveal on the same slide. Do not substitute a new text entrance on the next slide.
 
-전체 재생성 시에는 JSON을 수정하고 생성기를 다시 실행한다. 안정적인 section ID로 연결하며 슬라이드 번호·도형 번호를 고정하지 않는다. 기존 생성 결과를 import/export한 뒤 타임라인이 남았을 것이라 가정하지 않는다. 사용자의 기존 파일은 보존하고 새 출력 이름을 사용한다. 목차·슬라이드·포스터·사진 순서를 바꾼 뒤에는 `npm test`와 새 결과의 검사를 수행한다.
+For full regeneration, edit the JSON and rerun the generator. Connect sections through stable IDs, not fixed slide or shape numbers. Do not assume an import/export round trip preserves timelines. Preserve existing user files and use new output names. After changing navigation, slides, posters, or photo order, run `npm test` and inspect the new outputs.
 
-## 확인과 전달
+## Verification and delivery
 
-1. `.checks.json`과 `python3 scripts/pptx.py check output/deck-v1.pptx`로 구조·대상·연결을 확인한다. 검사는 실제 PowerPoint 재생 증명이 아니다.
-2. `*.static.pptx`는 애니메이션 완료 상태의 별도 배포용 원본이다. PDF는 이것에서 변환한다. 원본 PPTX에 PDF용 중복 슬라이드를 끼워 넣지 않는다.
-3. 모든 슬라이드를 렌더링하고 원본 비율·가독성·잘림·표기를 확인한다. PDF 변환 성공이나 텍스트 추출 성공만으로 한글 글리프가 보인다고 가정하지 않는다. macOS 변환용 폰트는 임시 프로필로만 복사하며, 자동 탐색이 안 되면 `README.md`의 `BLACKSTAGE_FONT_DIR`를 사용한다. 시스템 폰트 설정을 바꾸지 않는다.
-4. 실제 PowerPoint 슬라이드쇼를 실행했다면 첫 화면 → 첫 클릭의 이동·축소 → 같은 화면의 본문 공개 → 다음 클릭의 다음 장을 확인한다. 못 했다면 ‘실제 PowerPoint 재생 미확인’이라고 쓴다. LibreOffice나 PDF 미리보기로 이를 확인했다고 하지 않는다.
-5. 요청한 PPT·PDF만 전달한다. 첨부 도구의 관리 미디어 경로가 필요하면 최종본을 그곳에 복사하고, 성공 응답을 확인한다. 전달 결과가 불명확하면 상태를 확인하기 전에 반복 전송하지 않는다. 로컬 파일 검증과 외부 전달 완료는 별개다.
+1. Inspect `.checks.json` and run `python3 scripts/pptx.py check output/deck-v1.pptx` for structure, targets, and relationships. These checks do not prove PowerPoint playback.
+2. Use `*.static.pptx` as the separate completed-state source for PDF conversion. Do not insert duplicate handout slides into the playable deck.
+3. Render every slide and inspect aspect ratios, readability, clipping, and spelling. Successful PDF conversion or text extraction does not prove Korean glyphs are visible. Copy conversion fonts only into the temporary macOS profile; if automatic discovery fails, use `BLACKSTAGE_FONT_DIR` as documented in `README.md`. Do not change system font settings.
+4. If PowerPoint slideshow playback is available, check the initial frame, first-click motion and scaling, same-slide reveal, and next-click advance. Otherwise state that actual PowerPoint playback is unverified. Do not describe LibreOffice or PDF previews as PowerPoint playback verification.
+5. Deliver only the requested PPT and PDF files. If the attachment tool requires managed media, copy the final files there and confirm successful delivery. For ambiguous delivery, check status before retrying. Local validation and external delivery are separate outcomes.
 
-공개 예제는 중립적인 프로젝트 내용만 사용한다. 사용자의 실제 문구·사진·행사 정보·대화 원문·로컬 경로를 공개 자료에 옮기지 않는다.
+Use neutral project content in public examples. Do not publish real user copy, photos, event details, conversation transcripts, or local paths.

@@ -1,10 +1,10 @@
-# 프로젝트 지침
+# Project instructions
 
-- 공개 README는 영어로 작성한다. 목차 이동 효과의 실제 포함 여부와 검증 범위를 명확히 설명한다.
-- 검은 배경, 큰 굵은 글씨, 간결한 문구, 날짜만 노란색, 독립된 상단 목차를 유지한다.
-- 실제 사용자의 문구·사진·대화·로컬 경로를 예제나 문서에 넣지 않는다. 예제는 일반적인 프로젝트 발표로 작성한다.
-- 원래 화면에 있던 글씨가 같은 슬라이드에서 이동·축소되어야 한다. 다음 슬라이드의 등장 효과로 대체하지 않는다.
-- 슬라이드 번호와 도형 ID를 고정하지 않는다. 목차 항목과 상영 슬라이드는 독립적으로 다룬다.
-- 이미지 원본 비율, 편집 가능한 텍스트, 기존 결과물과 관계없는 ZIP 파트를 보존한다.
-- 애니메이션 검사 통과, 정지 화면 렌더 확인, 실제 PowerPoint 재생 확인을 구분한다. 마지막 항목을 수행하지 않았다면 미확인으로 표시한다.
-- 변경 후 `npm test`를 실행한다. 레이아웃 변경은 새 출력 경로로 예제를 생성하고 렌더링해 확인한다.
+- Write public documentation, repository descriptions, skill descriptions, and release notes in English. Explain which navigation animation is included and what has actually been verified.
+- Preserve black backgrounds, large bold text, concise copy, yellow dates, and independent top navigation.
+- Do not publish real user copy, photos, conversations, or local paths. Use generic project briefings in examples.
+- Move and shrink the original text object on the same slide. Do not substitute an entrance animation on the next slide.
+- Do not hard-code slide numbers or shape IDs. Keep agenda entries independent from presentation slides.
+- Preserve image aspect ratios, editable text, existing outputs, and unrelated ZIP parts.
+- Distinguish package checks, static render inspection, and actual PowerPoint playback. Mark playback as unverified unless it was performed.
+- Run `npm test` after changes. For layout changes, generate examples under a new output path and inspect their renders.

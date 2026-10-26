@@ -116,7 +116,11 @@ mkdir -p ~/.claude/skills
 ln -s "$PWD" ~/.claude/skills/blackstage-pptx
 ```
 
-In a new session, invoke `$blackstage-pptx` or ask for a black-background presentation with large bold text. See [SKILL.md](SKILL.md) for authoring instructions and [references/continuous-motion.md](references/continuous-motion.md) for implementation notes and regression checks. These agent-facing documents and the bundled demo currently use Korean.
+In a new session, invoke `$blackstage-pptx` or ask for a black-background presentation with large bold text. See [SKILL.md](SKILL.md) for authoring instructions and [references/continuous-motion.md](references/continuous-motion.md) for implementation notes and regression checks. The bundled demo uses Korean to exercise CJK typography; public documentation and skill descriptions are in English.
+
+## Releases
+
+Download the installable source bundle and example PPTX/PDF files from [GitHub Releases](https://github.com/nathankim0/blackstage-pptx/releases). The bundle contains the complete skill and scripts; run `npm ci` after extracting it. Use the playable example for animations and the static example or PDF for completed-state handouts. `SHA256SUMS` records the release asset checksums.
 
 ## Verification and limitations
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Blackstage PPTX"
-  short_description: "검은 배경·큰 굵은 글씨와 같은 화면 이동 효과로 발표 자료 제작"
-  default_prompt: "$blackstage-pptx로 간결한 검은 배경 발표용 PPT와 PDF를 만들어줘."
+  short_description: "Build bold black slides with same-slide navigation motion"
+  default_prompt: "Use $blackstage-pptx to create a concise black-background PPTX and PDF handout."
