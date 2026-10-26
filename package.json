@@ -1,0 +1,22 @@
+{
+  "name": "blackstage-pptx",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal black-background PowerPoint decks with continuous same-slide text motion and an agent skill.",
+  "type": "module",
+  "license": "MIT",
+  "repository": "github:nathankim0/blackstage-pptx",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "example": "node scripts/build.mjs examples/demo.json output/demo.pptx",
+    "example:pdf": "node scripts/build.mjs examples/demo.json output/demo.pptx --pdf"
+  },
+  "dependencies": {
+    "image-size": "2.0.4",
+    "pptxgenjs": "4.0.1"
+  },
+  "overrides": {"image-size": "$image-size"}
+}

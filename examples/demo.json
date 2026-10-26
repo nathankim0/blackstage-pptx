@@ -1,0 +1,22 @@
+{
+  "title": "프로젝트 브리핑",
+  "font": "NanumGothic",
+  "sections": [
+    {"id": "overview", "label": "프로젝트"},
+    {"id": "prepare", "label": "준비"},
+    {"id": "schedule", "label": "일정"},
+    {"id": "next", "label": "다음 단계"}
+  ],
+  "slides": [
+    {"kind": "cover", "kicker": "2026", "title": "프로젝트 브리핑", "subtitle": "제품 / 디자인 / 개발"},
+    {"kind": "toc", "items": ["프로젝트 소개", "데모", "준비", "일정", "다음 단계"]},
+    {"kind": "title", "title": "데모 영상", "nav": false, "notes": "영상은 별도 재생합니다."},
+    {"kind": "text", "section": "overview", "title": "프로젝트 소개", "lines": ["작게 시작하고", "직접 확인하기"]},
+    {"kind": "roadmap", "section": "prepare", "focus": 1,
+      "steps": [{"label": "모임", "date": "2026-10-24"}, {"label": "준비", "date": "2026-11-09"}, {"label": "발표", "date": "2026-11-23"}],
+      "reveal": {"kind": "text", "title": "준비 체크", "lines": ["원본 자료 확인", "팀별로 진행"]}},
+    {"kind": "text", "section": "prepare", "title": "1. 자료 준비", "lines": [[{"text": "기간: "}, {"date": "2026-11-09"}, {"text": "–"}, {"date": "2026-11-20"}], "팀별로 진행"]},
+    {"kind": "text", "section": "schedule", "title": "발표 일정", "lines": [[{"date": "2026-11-23"}], "오후 8시 / 회의실"]},
+    {"kind": "title", "section": "next", "title": "다음 단계"}
+  ]
+}

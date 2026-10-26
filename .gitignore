@@ -1,0 +1,9 @@
+node_modules/
+output/
+__pycache__/
+*.pyc
+.DS_Store
+.env*
+*.pptx
+*.pdf
+!.github/**
